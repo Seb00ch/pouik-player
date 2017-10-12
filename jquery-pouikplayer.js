@@ -1,3 +1,8 @@
+// Pouik player, a JQuery-based library to add sound on your webpage
+// License MIT
+// https://github.com/Seb00ch/pouik-player
+// v1.0
+
 (function ($) {
   var soundBank = {}
       soundActive = true; // false = 'muted', true = 'playing'
@@ -26,9 +31,8 @@
         if (typeof $('#pouik .player') == 'undefined')
           return $(this)._console('Player "' + name + '" not found.', 'warn');
 
-        for (var i = 0; i < $('#pouik .player').length; i++) {
+        for (var i = 0; i < $('#pouik .player').length; i++)
           $('#pouik .player')[i].pause();
-        };
       }
 
       return 'muted';
@@ -46,9 +50,8 @@
         if (typeof $('#pouik .player') == 'undefined')
           return $(this)._console('Player "' + name + '" not found.', 'warn');
 
-        for (var i = 0; i < $('#pouik .player').length; i++) {
+        for (var i = 0; i < $('#pouik .player').length; i++)
           $('#pouik .player')[i].play();
-        };
       }
       
       return 'play';
@@ -57,6 +60,13 @@
 
   // Public functions
   $.fn.extend({
+    killSound: function (name) {
+      this.queue('fx', function (next) {
+        $('#pouik .player').remove(name);
+        next();
+      });
+      return this;
+    },
     muteSound: function (group_class) {
       this.queue('fx', function (next) {
         $('#pouik .player').toggleSound('class', (group_class) ? group_class : 'all');

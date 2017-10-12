@@ -42,6 +42,11 @@ $(this).toggleSound('id', 'theme-song');
 // Mute "Born to be wild" after 5 seconds
 $(this).delay(5000).toggleSound('id', 'theme-song');
 ```
+### Kill a sound player in loop
+``` javascript
+// Kill "Born to be wild"
+$(this).killSound('#theme-song');
+```
 ### Mute sound
 ``` javascript
 $(this).muteSound();
