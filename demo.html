@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Demo of Pouik Player - A JQuery-based sound player</title>
+    <meta charset="utf-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+
+  <body class="text-center">
+    <h1>Pouik Player, a JQuery-based sound player</h1>
+
+    <div id="buttons">
+      <button id="play" class="btn btn-primary">Play Pouik</button>
+      <button id="loop" class="btn btn-success">Pouik in loop</button>
+      <button id="music" class="btn btn-error">Stop Music</button>
+      <button id="mute" class="btn btn-warning">Mute Sound</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="jquery-pouikplayer.js"></script>
+    <script>
+      $(document).ready( function () {
+        // Setting up my soundbank with my mp3 files
+        $(this).setSoundBank({
+          'song': 'sounds/born-to-be-wild.mp3',
+          'pouik': 'sounds/pouik.mp3'
+        });
+
+        // Play the song
+        $(this).playSound('song');
+
+        // Play the "pouik" sound when clicking on the "pouik" button
+        $('#play').on('click', function () {
+          $(this).playSound('pouik');
+        });
+
+        // Play the "pouik" sound in loop when clicking on the "loop" button
+        $('#loop').on('click', function () {
+          $(this).playSound('pouik', { loop: true });
+        });
+
+        // Mute / unmute the "song" when clicking on the "music" button
+        $('#music').on('click', function () {
+          $(this).toggleSound('id', 'song');
+        });
+
+        // Mute all sounds when clicking on the "mute" button
+        $('#mute').on('click', function () {
+          $(this).muteSound();
+        });
+      });
+    </script>
+  </body>
+</html>
